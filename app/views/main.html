@@ -1,0 +1,27 @@
+<p class="text-right">
+	Date from: {{awsranges.createDate}}
+</p>
+<div class="row">
+	<div class="form-group">
+		<label for="command">Command Prefix</label>
+		<input class="form-control input-lg" type="text" id="command" ng-model="command_prefix">
+	</div>
+	<div class="form-group">
+		<label>Region: </label>
+		<select ng-model="region" class="input-lg" ng-options="region for region in regionfilter"></select>
+
+		Service: 
+		<select ng-model="service" class="input-lg" ng-options="service for service in servicefilter"></select>
+	
+	</div>
+	
+	<code ng-if="region">
+		#filtered to {{region}}<br/>
+	</code>
+	<code ng-if="service">
+		#filtered to {{service}}<br/>
+	</code>
+	<code ng-repeat="range in awsranges.prefixes | filter: region | filter :service">
+		{{command_prefix}}	{{range.ip_prefix}}<br />
+	</code>
+</div>
